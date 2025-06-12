@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .video-box {
+            background-color: #fff;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 480px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        video {
+            width: 100%;
+            border-radius: 6px;
+        }
+        .title {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uploaded Videos</h1>
+    <div class="video-container">
+        {% for video in videos %}
+            <div class="video-box">
+                <video controls>
+                    <source src="{{ video.video_file.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="title">{{ video.title }}</div>
+            </div>
+        {% empty %}
+            <p>No videos uploaded yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
